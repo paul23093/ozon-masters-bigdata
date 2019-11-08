@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/conda/envs/dsenv/bin/python
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
