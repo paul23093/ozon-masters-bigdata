@@ -1,4 +1,5 @@
 #!/opt/conda/envs/dsenv/bin/python
+# coding: utf-8
 
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
