@@ -33,10 +33,10 @@ logging.info(f"PRED PATH {pred_path}")
 
 
 #open true path
-df_true = pd.read_table(true_path, header=None, index_col=0, names=["id", "true"])
+df_true = pd.read_table(sep='\t', true_path, header=None, index_col=0, names=["id", "true"])
 
 #open pred_path
-df_pred = pd.read_table(pred_path, header=None, index_col=0, names=["id", "pred"])
+df_pred = pd.read_table(sep='\t', pred_path, header=None, index_col=0, names=["id", "pred"])
 
 len_true = len(df_true)
 len_pred = len(df_pred)
