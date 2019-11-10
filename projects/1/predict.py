@@ -28,14 +28,13 @@ model = load("1.joblib")
 #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
 fields.pop(1)
-
+print(fields, file=sys.stderr)
 #read and infere
 read_opts=dict(
         sep='\t', names=fields, index_col=False, header=None,
         iterator=True, chunksize=10000
 )
 
-print(read_opts)
 for df in pd.read_table(sys.stdin, **read_opts):
     pred = model.predict(df.iloc[:,1:])
     out = zip(df['id'], pred)

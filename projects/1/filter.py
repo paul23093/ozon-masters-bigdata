@@ -1,3 +1,6 @@
+#!/opt/conda/envs/dsenv/bin/python
+# coding: utf-8
+
 import sys
 import os
 from glob import glob
@@ -38,8 +41,10 @@ exec(open(filter_cond_files[0]).read())
 # if -field is given, output all but the given field
 #
 
-print('lol keke checker')
-
+fields.pop(1)
+print('lol keke checker', file=sys.stderr)
+print(fields, file=sys.stderr)
+print(len(fields), file=sys.stderr)
 if len(sys.argv) == 1:
     #by default print all fields
     outfields = fields
@@ -65,10 +70,12 @@ for line in sys.stdin:
         continue
 
     #unpack into a tuple/dict
-    values = line.rstrip().split(',')
+    values = line.rstrip().split('\t')
+    print(values, file=sys.stderr)
+    print(len(values), file=sys.stderr)
     hotel_record = dict(zip(fields, values)) #Hotel(values)
 
     #apply filter conditions
     if filter_cond(hotel_record):
-        output = ",".join([hotel_record[x] for x in outfields])
+        output = "\t".join([hotel_record[x] for x in outfields])
         print(output)

@@ -8,4 +8,4 @@ INPUT=$2
 OUTPUT=$3
 MAPPER=$4
 REDUCER=$5
-$HADOOP_EXE jar $HADOOP_STREAM_JAR  -files $FILES -input $INPUT -output $OUTPUT -mapper "$MAPPER" -reducer "$REDUCER"
+$HADOOP_EXE jar $HADOOP_STREAM_JAR -D mapred.reduce.tasks=200 -files $FILES -input $INPUT -output $OUTPUT -mapper "$MAPPER" -reducer "$REDUCER"
