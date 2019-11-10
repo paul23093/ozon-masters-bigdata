@@ -1,3 +1,6 @@
+#!/opt/conda/envs/dsenv/bin/python
+# coding: utf-8
+
 #
 # This is a MAE scorer
 #
