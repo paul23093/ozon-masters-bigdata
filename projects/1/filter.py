@@ -42,7 +42,7 @@ exec(open(filter_cond_files[0]).read())
 #
 
 fields.pop(1)
-print('lol keke checker', file=sys.stderr)
+
 print(fields, file=sys.stderr)
 print(len(fields), file=sys.stderr)
 if len(sys.argv) == 1:
