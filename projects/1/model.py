@@ -40,6 +40,19 @@ cat_features = ['cf4',
  'cf26',
  'day_number']
 
+num_features = ['if1',
+ 'if2',
+ 'if3',
+ 'if4',
+ 'if5',
+ 'if6',
+ 'if8',
+ 'if9',
+ 'if10',
+ 'if11',
+ 'if12',
+ 'if13']
+
 fields = ["id", "label"] + numeric_features + categorical_features
 
 #
