@@ -48,7 +48,7 @@ fields = ["id", "label"] + numeric_features + categorical_features
 
 preprocessor = ColumnTransformer(
     transformers=[
-#         ('num', numeric_transformer, numeric_features),
+        ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, cat_features)
     ]
 )
