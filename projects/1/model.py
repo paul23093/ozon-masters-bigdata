@@ -13,8 +13,8 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 #
 numeric_features = ["if"+str(i) for i in range(1,14)]
 numeric_transformer = Pipeline(steps=[
-    ('imputer', SimpleImputer(strategy='mean')),
-    ('scaler', StandardScaler())
+    ('imputer', SimpleImputer(strategy='median')),
+#     ('scaler', StandardScaler())
 ])
 
 
@@ -48,7 +48,7 @@ fields = ["id", "label"] + numeric_features + categorical_features
 
 preprocessor = ColumnTransformer(
     transformers=[
-        ('num', numeric_transformer, numeric_features),
+#         ('num', numeric_transformer, numeric_features),
         ('cat', categorical_transformer, cat_features)
     ]
 )
