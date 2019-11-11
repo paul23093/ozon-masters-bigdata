@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/conda/envs/dsenv/bin/python
 # coding: utf-8
 
 # In[2]:
@@ -26,6 +26,8 @@ model = load("1.joblib")
 #fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
 #num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
 
+fields.pop(1)
+
 #read and infere
 read_opts=dict(
         sep='\t', names=fields, index_col=False, header=None,
@@ -34,7 +36,7 @@ read_opts=dict(
 
 for df in pd.read_table(sys.stdin, **read_opts):
     pred = model.predict(df)
-    out = zip(df.doc_id, pred)
+    out = zip(df.id, pred)
     print("\n".join(["{0},{1}".format(*i) for i in out]))
 
 
