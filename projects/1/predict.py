@@ -1,14 +1,17 @@
-#!/opt/conda/envs/dsenv/bin/python
+#!/usr/bin/env python
+# coding: utf-8
 
-#
-# This is a MAE scorer
-#
+# In[2]:
 
-import sys
-import os
+
+import sys, os
 import logging
+from joblib import load
 import pandas as pd
-from sklearn.metrics import log_loss
+
+sys.path.append('.')
+from model import fields
+
 #
 # Init the logger
 #
@@ -17,39 +20,21 @@ logging.info("CURRENT_DIR {}".format(os.getcwd()))
 logging.info("SCRIPT CALLED AS {}".format(sys.argv[0]))
 logging.info("ARGS {}".format(sys.argv[1:]))
 
-#
-# Read true values
-#
-try:
-    true_path, pred_path = sys.argv[1:]
-except:
-    logging.critical("Parameters: true_path (local) and pred_path (url or local)")
-    sys.exit(1)
+#load the model
+model = load("1.joblib")
 
-logging.info(f"TRUE PATH {true_path}")
-logging.info(f"PRED PATH {pred_path}")
+#fields = """doc_id,hotel_name,hotel_url,street,city,state,country,zip,class,price,
+#num_reviews,CLEANLINESS,ROOM,SERVICE,LOCATION,VALUE,COMFORT,overall_ratingsource""".replace("\n",'').split(",")
+
+#read and infere
+read_opts=dict(
+        sep='\t', names=fields, index_col=False, header=None,
+        iterator=True, chunksize=1000
+)
+
+for df in pd.read_table(sys.stdin, **read_opts):
+    pred = model.predict(df)
+    out = zip(df.doc_id, pred)
+    print("\n".join(["{0},{1}".format(*i) for i in out]))
 
 
-#open true path
-df_true = pd.read_csv(true_path, header=None, index_col=0, names=["id", "true"])
-
-#open pred_path
-df_pred = pd.read_csv(pred_path, header=None, index_col=0, names=["id", "pred"])
-
-len_true = len(df_true)
-len_pred = len(df_pred)
-
-logging.info(f"TRUE RECORDS {len_true}")
-logging.info(f"PRED RECORDS {len_pred}")
-
-assert len_true == len_pred, f"Number of records differ in true and predicted sets"
-
-df = df_true.join(df_pred)
-len_df = len(df)
-assert len_true == len_df, f"Combined true and pred has different number of records: {len_df}"
-
-score = log_loss(df['true'], df['pred'])
-
-print(score)
-
-sys.exit(0)
