@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split, GridSearchCV
 numeric_features = ["if"+str(i) for i in range(1,14)]
 numeric_transformer = Pipeline(steps=[
     ('imputer', SimpleImputer(strategy='mean')),
-    ('scaler', StandardScaler())
+#     ('scaler', StandardScaler())
 ])
 
 
