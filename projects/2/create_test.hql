@@ -1,43 +1,53 @@
+USE paul23093;
+DROP TABLE hw2_test;
 CREATE EXTERNAL TABLE hw2_test (
-if1
-if2
-if3
-if4
-if5
-if6
-if7
-if8
-if9
-if10
-if11
-if12
-if13
-if14
-cf1
-cf2
-cf3
-cf4
-cf5
-cf6
-cf7
-cf8
-cf9
-cf10
-cf11
-cf12
-cf13
-cf14
-cf15
-cf16
-cf17
-cf18
-cf19
-cf20
-cf21
-cf22
-cf23
-cf24
-cf25
-cf26
+id int,
+if1 int,
+if2 int,
+if3 int,
+if4 int,
+if5 int,
+if6 int,
+if7 int,
+if8 int,
+if9 int,
+if10 int,
+if11 int,
+if12 int,
+if13 int,
+cf1 string,
+cf2 string,
+cf3 string,
+cf4 string,
+cf5 string,
+cf6 string,
+cf7 string,
+cf8 string,
+cf9 string,
+cf10 string,
+cf11 string,
+cf12 string,
+cf13 string,
+cf14 string,
+cf15 string,
+cf16 string,
+cf17 string,
+cf18 string,
+cf19 string,
+cf20 string,
+cf21 string,
+cf22 string,
+cf23 string,
+cf24 string,
+cf25 string,
+cf26 string,
+day_number string
 )
+row format delimited
+fields terminated by '\t'
+stored as textfile
 LOCATION '/datasets/criteo_test_large_features';
+
+select *
+from hw2_test
+limit 10;

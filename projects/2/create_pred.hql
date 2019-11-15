@@ -1,5 +1,7 @@
+USE paul23093;
+DROP TABLE hw2_pred;
 CREATE TABLE hw2_pred (
-id int
+id int,
 pred float
 )
-LOCATION '';
+LOCATION 'paul23093_hw2_pred';
