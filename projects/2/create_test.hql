@@ -1,5 +1,3 @@
-USE paul23093;
-DROP TABLE hw2_test;
 CREATE EXTERNAL TABLE hw2_test (
 id int,
 if1 int,
