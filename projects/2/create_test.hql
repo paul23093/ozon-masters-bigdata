@@ -1,3 +1,5 @@
+USE paul23093;
+DROP TABLE hw2_test;
 CREATE EXTERNAL TABLE hw2_test (
 id int,
 if1 int,
@@ -45,7 +47,3 @@ row format delimited
 fields terminated by '\t'
 stored as textfile
 LOCATION '/datasets/criteo_test_large_features';
-
-select *
-from hw2_test
-limit 10;
