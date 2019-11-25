@@ -47,7 +47,7 @@ def shortest_path(v_from, v_to, df, max_path_length=10):
             concat(*output_columns).alias('path')
         )
     )
-    temp_df_c.select("path").write.mode("overwrite").text("hw3_output")
+    temp_df_c.select("path").write.mode("overwrite").text("paul23093_hw3_output")
 
 
 if __name__ == '__main__':
