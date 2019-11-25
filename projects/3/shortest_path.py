@@ -58,4 +58,4 @@ if __name__ == '__main__':
         StructField("c0", IntegerType())
     ])
     raw_graph = spark.read.csv(f"{sys.argv[3]}", schema=schema, sep='\t')
-    shortest_path(int(sys.argv[1]), int(sys.argv[2]), sys.argv[3])
+    shortest_path(int(sys.argv[1]), int(sys.argv[2]), raw_graph)
