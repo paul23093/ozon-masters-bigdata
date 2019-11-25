@@ -12,19 +12,19 @@ sys.path.insert(0, os.path.join(PYSPARK_HOME, "pyspark.zip"))
 
 from pyspark import SparkConf
 from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+from pyspark.sql.functions import col, concat, lit
 
 conf = SparkConf()
 conf.set("spark.jars.packages", "graphframes:graphframes:0.7.0-spark2.3-s_2.11")
 
 spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
-from pyspark.sql import SparkSession
-
 spark = SparkSession.builder.getOrCreate()
 spark.sparkContext.setLogLevel('WARN')
 
 def shortest_path(v_from, v_to, df, max_path_length=10):
-    from pyspark.sql.functions import col, concat, lit
     graph = df.distinct().cache()
     temp_df_c = graph.filter('c0 = {v_from}')
     i = 1
