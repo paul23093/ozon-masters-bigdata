@@ -1,8 +1,8 @@
 def shortest_path(v_from, v_to, df, max_path_length=10):
     from pyspark.sql.functions import col, concat, lit
     schema = StructType(fields=[
-        StructField(\"c1\", IntegerType()),
-        StructField(\"c0\", IntegerType())
+        StructField("c1", IntegerType()),
+        StructField("c0", IntegerType())
     ])
     graph = raw_graph.distinct().cache()
     temp_df_c = graph.filter('c0 = {v_from}')
@@ -28,4 +28,4 @@ def shortest_path(v_from, v_to, df, max_path_length=10):
     )
     .show(20, False)
     )
-    temp_df_c.select(\"path\").write.mode(\"overwrite\").text(\"hw3_output\")
+    temp_df_c.select("path").write.mode("overwrite").text("hw3_output")
