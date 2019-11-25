@@ -34,20 +34,18 @@ def shortest_path(v_from, v_to, df, max_path_length=10):
         temp_df = temp_df_c
         temp_df_c.unpersist()
         temp_df_c = temp_df.join(graph, f'c{i}', 'inner').cache()
-        temp_df_c.show()
         tmp = temp_df_c.filter(f'c{i+1} = {v_to}').count()
         output_columns.append(lit(','))
         output_columns.append(f'c{i+1}')
         if tmp > 0:
             break
         i += 1
-    (
-    temp_df_c
-    .filter(f'c{i+1} = 34')
-    .select(
-        concat(*output_columns).alias('path')
-    )
-    .show(20, False)
+    temp_df_c = (
+        temp_df_c
+        .filter(f'c{i+1} = 34')
+        .select(
+            concat(*output_columns).alias('path')
+        )
     )
     temp_df_c.select("path").write.mode("overwrite").text("hw3_output")
 
