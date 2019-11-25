@@ -26,7 +26,7 @@ spark.sparkContext.setLogLevel('WARN')
 
 def shortest_path(v_from, v_to, df, max_path_length=10):
     graph = df.distinct().cache()
-    temp_df_c = graph.filter('c0 = {v_from}')
+    temp_df_c = graph.filter(f'c0 = {v_from}')
     i = 1
     output_columns = ['c0', lit(','), 'c1']
     while i < max_path_length:
